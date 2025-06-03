@@ -47,6 +47,13 @@ export const TodoApp = () => {
     }
   };
 
+  const removeTodo = (todoId: number) => {
+    const updatedTodos = todos.filter(todo => todo.id !== todoId);
+    setTodos(updatedTodos);
+    setItem("todos", updatedTodos);
+  };
+
+
   return (
     <>
       <h1>ToBeDiDone - Todo App</h1>
@@ -54,7 +61,10 @@ export const TodoApp = () => {
         ... Filtreringsfunktionalitet kommer här ...
         <AddTodo createTodo={ addTodo }/>
       </section>
-      <TodoList todos={ todos }/>
+      <TodoList 
+        todos={ todos }
+        onRemoveTodo={ removeTodo }
+      />
     </>
   );
 };
