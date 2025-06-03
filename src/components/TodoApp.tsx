@@ -4,6 +4,7 @@ import { TodoList } from "./TodoList";
 import { getItem, setItem } from "../utils/localStorage";
 import { AddTodo } from "./AddTodo";
 import { SearchBox } from "./SearchBox";
+import { SortOption } from "./SortOption";
 
 export const TodoApp = () => {
 
@@ -38,10 +39,25 @@ export const TodoApp = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [showCompleted, setShowCompleted] = useState(true);
+  const [sortOption, setsortOption] = useState("default");
 
   const filteredTodos = todos
     .filter(todo => showCompleted || !todo.completed)
-    .filter(todo => todo.title.toLowerCase().includes(searchTerm.trim().toLowerCase()));
+    .filter(todo => todo.title.toLowerCase().includes(searchTerm.trim().toLowerCase()))
+    .sort((a, b) => {
+      switch (sortOption) {
+        case "title-asc":
+          return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
+        case "title-desc":
+          return b.title.toLowerCase().localeCompare(a.title.toLowerCase());
+        case "date-newest":
+          return b.createdAt.getTime() - a.createdAt.getTime();
+        case "date-oldest":
+          return a.createdAt.getTime() - b.createdAt.getTime();
+        default:
+          return 0;
+      }
+    });
     
   const toggleTodo = (todoId: number) => {
     const updatedTodos = todos.map((todo) =>
@@ -79,6 +95,7 @@ export const TodoApp = () => {
           <button onClick={ () => setShowCompleted(!showCompleted) }>
             { showCompleted ? "Dölj färdiga" : "Visa färdiga" }
           </button>
+          <SortOption sortOption={ sortOption } onSortChange={ setsortOption }/>
           <AddTodo createTodo={ addTodo } />
         </div>
       </section>
