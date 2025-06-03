@@ -43,11 +43,11 @@ export const AddTodo = ({createTodo}: AddTodosProps) => {
         <form onSubmit={ handleSubmit }>
           <div>
             <label htmlFor="title">Titel</label>
-            <input type="text" name="title" id="title" onChange={ handleChange } />
+            <input type="text" name="title" id="title" value={todo.title} onChange={ handleChange } />
           </div>
           <div>
             <label htmlFor="text">Beskrivning</label>
-            <textarea name="text" id="text" onChange={ handleChange }></textarea>
+            <textarea name="text" id="text" value={todo.text} onChange={ handleChange }></textarea>
           </div>
           <button>Lägg till Todo</button>
         </form>
