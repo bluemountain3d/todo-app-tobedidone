@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Todo } from "../models/Todo";
+import { TodoList } from "./TodoList";
 
 export const TodoApp = () => {
 
@@ -19,7 +20,7 @@ export const TodoApp = () => {
       <section>
         ... Filtreringsfunktionalitet kommer här ...
       </section>
-      ... Todo presentation here
+      <TodoList todos={ todos }/>
     </>
   );
 };
