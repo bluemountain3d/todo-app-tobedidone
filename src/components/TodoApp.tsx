@@ -35,6 +35,13 @@ export const TodoApp = () => {
     return initialTodos;
   });
 
+
+  const [showCompleted, setShowCompleted] = useState(true);
+
+  const filteredTodos = todos
+    .filter(todo => showCompleted || !todo.completed)
+
+
   const toggleTodo = (todoId: number) => {
     const updatedTodos = todos.map((todo) =>
       todo.id === todoId
@@ -66,11 +73,13 @@ export const TodoApp = () => {
     <>
       <h1>ToBeDiDone - Todo App</h1>
       <section>
-        ... Filtreringsfunktionalitet kommer här ...
+        <button onClick={() => setShowCompleted(!showCompleted)}>
+          { showCompleted ? "Dölj färdiga" : "Visa färdiga" }
+        </button>
         <AddTodo createTodo={ addTodo }/>
       </section>
       <TodoList 
-        todos={ todos }
+        todos={ filteredTodos }
         onRemoveTodo={ removeTodo }
         onToggleTodo={ toggleTodo }
       />
