@@ -3,9 +3,10 @@ import type { TodoItem } from "../types/TodoItem";
 type TodoPresentationProps = {
   todo: TodoItem;
   onRemove: (todoId: number) => void;
+  onToggle: (todoId: number) => void;
 }
 
-export const TodoPresentation = ({todo, onRemove}: TodoPresentationProps) => {
+export const TodoPresentation = ({todo, onRemove, onToggle}: TodoPresentationProps) => {
   return (
     <article key={todo.id}>
       <h2>{ todo.title }</h2>
@@ -16,11 +17,12 @@ export const TodoPresentation = ({todo, onRemove}: TodoPresentationProps) => {
           type="checkbox" 
           name="completed" 
           id="completed" 
-          checked={todo.completed}
+          checked={ todo.completed }
+          onChange={ () => onToggle(todo.id) }
         />
       </div>
       <span>Skapad: { todo.createdAt.toLocaleString() }</span>
-      <button type="button" onClick={() => onRemove(todo.id)}>Ta bort</button>
+      <button type="button" onClick={ () => onRemove(todo.id) }>Ta bort</button>
     </article>
   );
 };

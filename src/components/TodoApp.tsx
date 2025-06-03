@@ -35,6 +35,15 @@ export const TodoApp = () => {
     return initialTodos;
   });
 
+  const toggleTodo = (todoId: number) => {
+    const updatedTodos = todos.map((todo) =>
+      todo.id === todoId
+        ? { ...todo, completed: !todo.completed }
+        : todo
+    );
+    setTodos(updatedTodos);
+    setItem("todos", updatedTodos);
+  };
 
   const addTodo = (newTodo: Todo) => {
     if (newTodo.title && newTodo.text) {
@@ -53,7 +62,6 @@ export const TodoApp = () => {
     setItem("todos", updatedTodos);
   };
 
-
   return (
     <>
       <h1>ToBeDiDone - Todo App</h1>
@@ -64,6 +72,7 @@ export const TodoApp = () => {
       <TodoList 
         todos={ todos }
         onRemoveTodo={ removeTodo }
+        onToggleTodo={ toggleTodo }
       />
     </>
   );

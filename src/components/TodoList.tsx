@@ -4,9 +4,10 @@ import { TodoPresentation } from "./TodoPresentation";
 type TodoListProps = {
   todos: Todo[];
   onRemoveTodo: (todoId: number) => void;
+  onToggleTodo: (todoId: number) => void;
 }
 
-export const TodoList = ({todos, onRemoveTodo}: TodoListProps) => {
+export const TodoList = ({todos, onRemoveTodo, onToggleTodo}: TodoListProps) => {
   return (
     <section>
       {todos.map((todo) => (
@@ -14,6 +15,7 @@ export const TodoList = ({todos, onRemoveTodo}: TodoListProps) => {
           key={todo.id}
           todo={todo}
           onRemove={onRemoveTodo}
+          onToggle={onToggleTodo}
         />
       ))}      
     </section>
