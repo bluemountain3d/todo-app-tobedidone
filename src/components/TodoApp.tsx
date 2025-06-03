@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Todo } from "../models/Todo";
 import { TodoList } from "./TodoList";
-import { getItem } from "../utils/LocalStorage";
+import { getItem, setItem } from "../utils/localStorage";
+import { AddTodo } from "./AddTodo";
 
 export const TodoApp = () => {
 
@@ -34,11 +35,24 @@ export const TodoApp = () => {
     return initialTodos;
   });
 
+
+  const addTodo = (newTodo: Todo) => {
+    if (newTodo.title && newTodo.text) {
+      const updatedTodos = [...todos, newTodo];
+      setTodos(updatedTodos);
+      setItem("todos", updatedTodos);
+    }
+    else {
+      alert("Du måste skriva en titel och en beskrivning!");
+    }
+  };
+
   return (
     <>
       <h1>ToBeDiDone - Todo App</h1>
       <section>
         ... Filtreringsfunktionalitet kommer här ...
+        <AddTodo createTodo={ addTodo }/>
       </section>
       <TodoList todos={ todos }/>
     </>
