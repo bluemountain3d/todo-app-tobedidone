@@ -3,6 +3,7 @@ import { Todo } from "../models/Todo";
 import { TodoList } from "./TodoList";
 import { getItem, setItem } from "../utils/localStorage";
 import { AddTodo } from "./AddTodo";
+import { SearchBox } from "./SearchBox";
 
 export const TodoApp = () => {
 
@@ -35,13 +36,13 @@ export const TodoApp = () => {
     return initialTodos;
   });
 
-
+  const [searchTerm, setSearchTerm] = useState("");
   const [showCompleted, setShowCompleted] = useState(true);
 
   const filteredTodos = todos
     .filter(todo => showCompleted || !todo.completed)
-
-
+    .filter(todo => todo.title.toLowerCase().includes(searchTerm.trim().toLowerCase()));
+    
   const toggleTodo = (todoId: number) => {
     const updatedTodos = todos.map((todo) =>
       todo.id === todoId
@@ -73,10 +74,13 @@ export const TodoApp = () => {
     <>
       <h1>ToBeDiDone - Todo App</h1>
       <section>
-        <button onClick={() => setShowCompleted(!showCompleted)}>
-          { showCompleted ? "Dölj färdiga" : "Visa färdiga" }
-        </button>
-        <AddTodo createTodo={ addTodo }/>
+        <div>
+          <SearchBox searchTerm={ searchTerm } onSearch={ setSearchTerm } />
+          <button onClick={ () => setShowCompleted(!showCompleted) }>
+            { showCompleted ? "Dölj färdiga" : "Visa färdiga" }
+          </button>
+          <AddTodo createTodo={ addTodo } />
+        </div>
       </section>
       <TodoList 
         todos={ filteredTodos }

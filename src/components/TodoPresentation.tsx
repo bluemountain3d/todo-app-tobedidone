@@ -8,7 +8,7 @@ type TodoPresentationProps = {
 
 export const TodoPresentation = ({todo, onRemove, onToggle}: TodoPresentationProps) => {
   return (
-    <article key={todo.id}>
+    <article key={ todo.id } className={ todo.completed ? 'completed' : '' }>
       <h2>{ todo.title }</h2>
       <p>{ todo.text }</p>
       <div>
