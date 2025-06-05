@@ -5,6 +5,7 @@ import { getItem, setItem } from "../utils/localStorage";
 import { AddTodo } from "./AddTodo";
 import { SearchBox } from "./SearchBox";
 import { SortOption } from "./SortOption";
+import { CompletedVisibility } from "./CompletedVisibility";
 
 export const TodoApp = () => {
 
@@ -38,7 +39,7 @@ export const TodoApp = () => {
   });
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [showCompleted, setShowCompleted] = useState(true);
+  const [showCompleted, setShowCompleted] = useState(false);
   const [sortOption, setsortOption] = useState("default");
 
   const filteredTodos = todos
@@ -88,16 +89,19 @@ export const TodoApp = () => {
 
   return (
     <>
-      <h1>ToBeDiDone - Todo App</h1>
-      <section>
-        <div>
-          <SearchBox searchTerm={ searchTerm } onSearch={ setSearchTerm } />
-          <button onClick={ () => setShowCompleted(!showCompleted) }>
-            { showCompleted ? "Dölj färdiga" : "Visa färdiga" }
-          </button>
-          <SortOption sortOption={ sortOption } onSortChange={ setsortOption }/>
-          <AddTodo createTodo={ addTodo } />
+      <section className="grid grid-cols-1 gap-y-4">
+        <SearchBox searchTerm={ searchTerm } onSearch={ setSearchTerm } />
+        <div className="flex gap-x-4">
+          <SortOption 
+            sortOption={ sortOption } 
+            onSortChange={ setsortOption }
+          />
+          <CompletedVisibility 
+            showCompleted={ showCompleted } 
+            onShowCompleted={ setShowCompleted }
+          />
         </div>
+        <AddTodo createTodo={ addTodo } />
       </section>
       <TodoList 
         todos={ filteredTodos }
