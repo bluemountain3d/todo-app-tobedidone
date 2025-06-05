@@ -9,7 +9,7 @@ type TodoListProps = {
 
 export const TodoList = ({todos, onRemoveTodo, onToggleTodo}: TodoListProps) => {
   return (
-    <section>
+    <section className="grid grid-cols-1 gap-y-6">
       {todos.map((todo) => (
         <TodoPresentation
           key={todo.id}
