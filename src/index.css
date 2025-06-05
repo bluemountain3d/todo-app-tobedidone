@@ -1,6 +1,11 @@
 @import 'tailwindcss';
 
 /* Custom  */
-@theme {
-  
+@utility completed {
+  @apply opacity-50 line-through text-gray-400;
+}
+
+
+body {
+  @apply min-h-dvh bg-gray-800 grid grid-cols-1 
 }
