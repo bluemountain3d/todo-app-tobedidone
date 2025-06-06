@@ -91,7 +91,7 @@ export const TodoApp = () => {
     <>
       <section className="grid grid-cols-1 gap-y-4">
         <SearchBox searchTerm={ searchTerm } onSearch={ setSearchTerm } />
-        <div className="flex gap-x-4">
+        <div className="flex flex-wrap gap-4">
           <SortOption 
             sortOption={ sortOption } 
             onSortChange={ setsortOption }

@@ -5,7 +5,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <main className="py-12 w-full max-w-md mx-auto grid grid-cols-1 gap-y-8">
+      <main className="py-12 px-4 w-full min-w-xs max-w-lg mx-auto grid grid-cols-1 gap-y-8">
         <TodoApp />
       </main>
     </>
