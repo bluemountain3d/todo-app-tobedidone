@@ -21,7 +21,7 @@ export const TodoApp = () => {
     // Get from Local Storage 
     const item = getItem("todos") as Todo[] | undefined;
 
-    // Recreate the objects from local storage
+    // Recreate the objects from local storage if not undefined
     // 1. Create new objects using Todo Class (with correct title and text)
     // 2. Overwrite the auto-generated values (id, completed, createdAt) with stored values
     if (item && Array.isArray(item)) {
