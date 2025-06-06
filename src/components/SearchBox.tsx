@@ -6,7 +6,7 @@ type SearchBoxProps = {
 export const SearchBox = ({searchTerm, onSearch}: SearchBoxProps) => {
   return (
     <div>
-      <label htmlFor="search" className="sr-only">Sök todos</label>
+      <label htmlFor="search" className="sr-only bg-white text-black">Sök todos</label>
       <input 
         type="text" 
         name="search" 

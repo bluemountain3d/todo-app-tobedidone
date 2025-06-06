@@ -16,7 +16,7 @@ export const TodoPresentation = ({todo, onRemove, onToggle}: TodoPresentationPro
       `}
     >
       <div className="flex flex-row items-center gap-x-3 pb-3 border-b-2 border-gray-600">
-        <label htmlFor={`completed-${todo.id}`} className="sr-only">Klarmarkerad</label>
+        <label htmlFor={`completed-${todo.id}`} className="sr-only bg-white text-black">Klarmarkerad</label>
         <input 
           type="checkbox" 
           name="completed" 
@@ -32,7 +32,7 @@ export const TodoPresentation = ({todo, onRemove, onToggle}: TodoPresentationPro
       <p className="p-2 text-gray-200 text-lg">{ todo.text }</p>
       
       <div className="flex items-center justify-between">
-        <span className="font-semibold text-gray-400">
+        <span className="text-sm font-semibold text-gray-300">
           Skapad: { todo.createdAt.toLocaleString() }
         </span>
         <button 
