@@ -5,6 +5,9 @@
   @apply opacity-50 line-through text-gray-400;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
 
 body {
   @apply min-h-dvh bg-gray-800 grid grid-cols-1 
