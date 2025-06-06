@@ -8,4 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  base: '/fed24d-the-last-todos-bluemountain3d/',
 })
